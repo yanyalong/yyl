@@ -115,3 +115,27 @@ post req.body
      1.需要插件 第三方模块  body-parser 
      2.数据格式 json  x-www-form-urlencode
 
+### 静态资源路径  www目录
+指定一个路径 该路径的所有文件都可以通过网络的方式来访问
+
+app.use('访问的url路径',express.static('指定的文件夹路径'))
+
+### 中间件 拦截器
+中间件就是一个函数 接受三个参数 req res next
+(req,res,next)=>{} 
+
+### 跨域问题
+1.同源策略 浏览器为了安全性考虑   
+jsonp  需要后端配合
+cors   需要后端配合
+服务器代理  服务器请求没有跨域问题
+1.我方网页请求 我方服务器  
+2.我方服务器请求敌方服务器
+3.将敌方服务器返回的数据给我方网页
+
+### 路由
+/user/login
+/user/reg
+        /login
+/user{
+        /reg
