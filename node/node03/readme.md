@@ -162,4 +162,62 @@ mongoose 第三方模块 node 操作数据库的模块
 4. 缺少文件目录  在c盘 添加一个data的文件夹 data里添加一个db的文件夹
 5. 运行mongod 启动数据库
 6. mongo 连接数据库   show dbs 查看当前所有的数据库
-  
+
+#### 命令行使用mongodb
+mongod  mongo
+mysql   database db   table               data 
+mongodb databse  db   collection（集合）   document（文档）json 
+
+##### 数据库 curd
+show dbs  显示所有的数据库
+db        当前正在使用的数据库
+use dbname 
+         1.创建一个新的数据库  数据库没有内容 所有临时库 看不到
+         2.选择一个已经创建的数据库
+db.dropDatabase()  删除数据库
+###### 集合 （collections） 数据表 
+show collections 查看当前数据库所有的集合
+db.createCollection('集合名字')
+db.集合的名字.drop()
+###### 文档 数据 
+_id 主键 唯一索引
+db.集合名.insert(obj) 
+db.集合名.find()
+db.集合名.find().pretty()
+db.集合名.remove(删除条件)
+db.集合名.update({key:value} 查询条件，{}更新数据) 
+db.集合名.update({key:value},{$set:{us:'网易'}},{multi:true})
+db.集合名.save({})
+通过save 方法添加数据 如果主键重复 覆盖相当于 修改 不重复就是创建
+
+##### 固值查询
+查询的字段给与一个固定的值
+##### 范值查询
+$gt  >
+$gte >=
+$lt  <
+$lte <=
+$ne  !=
+db.user.find({age:{$gte:19}})
+##### 交集查询&&   并集查询||
+查询 年龄大于16 或者年龄小于18
+db.user.find({$or:[条件1，条件2]})
+查询 年龄大于16 并且年龄小于18
+db.user.find({$and:[条件1，条件2]})
+##### 分页
+skip(num) 跳过多少条
+limit(num) 限制多少条
+pageSize 每页多少条
+page  第几页
+db.user.find().skip(0).limit(3)
+db.user.find().skip(3).limit(3)
+db.user.find().skip((page-1)*pageSize).limit(pageSize)
+
+#### 在nodejs中使用mongodb数据库
+mongoose 的第三方模块
+1. 连接数据库
+2. 创建schema对象
+3. 将schema对象和集合做关联形成数据模型
+4. 数据库操作
+
+
