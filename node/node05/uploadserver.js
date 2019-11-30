@@ -16,11 +16,12 @@ app.post('/img',upload.single('hehe'),(req,res)=>{
     return res.send({err:-1,msg:'类型错误'})
   }
   let fileName= (new Date()).getTime()+'-'+parseInt(Math.random()*236482648246)+'-'+parseInt(Math.random()*236482648246)
+  let imgPath=`/public/${fileName}.${extName}`
   fs.writeFile(path.join(__dirname,'./public',`${fileName}.${extName}`),buffer,(err)=>{
     if(err){
 
     }else{
-      res.send({err:0,msg:'上传ok'})
+      res.send({err:0,msg:'上传ok',path:imgPath})
     }
   })
 })

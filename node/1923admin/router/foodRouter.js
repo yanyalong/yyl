@@ -35,7 +35,16 @@ router.get('/getFoodsByKw',(req,res)=>{
   })
 })
 //删除接口
-
+router.get('/delFood',(req,res)=>{
+  let  {foodId}=req.query
+  Food.del(foodId)
+  .then((data)=>{
+    res.send({err:0,msg:'del ok'})
+  })
+  .catch((err)=>{ 
+    res.send({err:-1,msg:'del nook'})
+  })
+})
 //添加数据
 router.get('/addFood',(req,res)=>{
   let {name,price,img,foodType,desc} = req.query 
@@ -44,4 +53,10 @@ router.get('/addFood',(req,res)=>{
   .catch((data)=>{res.send({err:-1,msg:'添加失败'})})
 })
 //修改 
+router.get('/updateFood',(req,res)=>{
+  let {foodId,name,price,img,foodType,desc} = req.query 
+  Food.update(foodId,name,price,img,foodType,desc)
+  .then((data)=>{res.send({err:0,msg:'修改ok'})})
+  .catch((data)=>{res.send({err:-1,msg:'修改失败'})})
+})
 module.exports = router

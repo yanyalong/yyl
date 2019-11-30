@@ -9,7 +9,9 @@
 </head>
 <body>
   <input type="file" id='file'>
+  <!-- 文件域 -->
   <button onclick='upload()'>上传</button>
+  <img src="" alt="">
 <script>
   function upload(){
     // 获取图片
@@ -23,10 +25,13 @@
       method:'POST',
       url:'http://10.60.18.220:3000/img',
       data:formdata,
-      contentType:false,
-      processData:false,
+      contentType:false,//默认是post数据格式 x-www-form...
+      processData:false,//将数据做成key=v&key=v
       success(data){
         console.log(data)
+        if(data.err ===0){
+          document.getElementsByTagName('img')[0].src=data.path
+        }
       }
     })
   }

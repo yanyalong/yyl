@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>图片上传base64</title>
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+  <input type="file" id='file'>
+  <!-- 文件域 -->
+  <button onclick='upload()'>上传</button>
+  <img src="" alt="">
+<script>
+  function upload(){
+     let file = document.getElementsByTagName('input')[0].files[0]
+     // 将图片读成base64  
+     let fileReader  = new FileReader() 
+     fileReader.onload=()=>{
+       console.log('读取结束')
+       console.log(fileReader.result)
+       document.getElementsByTagName('img')[0].src=fileReader.result
+     }
+    fileReader.readAsDataURL(file)
+
+  }
+</script>
+<!-- 
+  base64是一种数据格式 当成一个字符串 可以作为一个图片
+  通过base64进行上传
+  1.选中图片
+  2.将图片读取成base64 
+  3.通过正常ajax 上传base64
+
+
+ -->
+</body>
+</html>

@@ -29,4 +29,18 @@ async function getByKw(kw,page,pageSize){
  let  foods=await FoodModel.find({$or:[{name:{$regex:regex}},{desc:{$regex:regex}}]}).skip((page-1)*pageSize).limit(pageSize)
  return {foods,allCount}
 }
-module.exports={add,get,getByType,getByKw}
+
+// 删除
+async function del(foodId){
+  let result = await  FoodModel.deleteOne({_id:foodId})
+  return result
+}
+
+// 修改
+async function  update(foodId,name,price,img,foodType,desc){
+  
+  let result  = await FoodModel.updateOne({_id:foodId},{name,price,img,foodType,desc})
+   console.log(result)
+   return  result
+}
+module.exports={add,get,getByType,getByKw,del,update}

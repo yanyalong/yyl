@@ -264,6 +264,14 @@ public     静态资源
 文件上传  method 必须post
 数据格式必须是formdata 
 
+#### api接口文档生成
+通过 apidoc 这个模块  读取某一目录下所有的规则注释 形成api文档
+
+1. npm install  apidoc  -g 
+2. 按照规范写注释
+3. 在 package.json同一级创建 apidoc.josn 文件
+4. 执行 apidoc  -i 读取目录  -o  输出目录
+
 
 
 

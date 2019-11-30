@@ -1,0 +1,1 @@
+define({  "name": "一份帅气的文档",  "version": "0.9.9",  "description": "🙃哒",  "title": "午夜凶铃",  "url": "http://localhost:3000",  "sampleUrl": false,  "defaultVersion": "0.0.0",  "apidoc": "0.3.0",  "generator": {    "name": "apidoc",    "time": "2019-11-30T01:57:32.544Z",    "url": "http://apidocjs.com",    "version": "0.17.6"  }});

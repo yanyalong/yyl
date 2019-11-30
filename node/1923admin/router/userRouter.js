@@ -8,6 +8,20 @@ let codes={} //保存邮箱和验证码
 /*
 1.验证用户发送的验证码 和服务器保存的是否一致
 */ 
+/**
+ * @api {get} /admin/user/reg 用户注册
+ * @apiName reg
+ * @apiGroup User
+ *
+ * @apiParam {String} us 用户账号
+ * @apiParam {String} ps 用户密码.
+ * @apiParam {Number} code 验证码.
+ *
+ * @apiSuccess {String} err Firstname of the User.
+ * @apiSuccess {String} msg  Lastname of the User.
+ */
+
+
 router.get('/reg',(req,res)=>{
    let {us,ps,code} = req.query 
    //用户的账号 us 就是邮箱 
@@ -25,7 +39,17 @@ router.get('/reg',(req,res)=>{
    })
 
 })
-
+/**
+ * @api {post} /admin/user/login 用户登录
+ * @apiName login
+ * @apiGroup User
+ *
+ * @apiParam {String} us 用户账号
+ * @apiParam {String} ps 用户密码.
+ *
+ * @apiSuccess {String} err Firstname of the User.
+ * @apiSuccess {String} msg  Lastname of the User.
+ */
 router.get('/login',(req,res)=>{
   let {us,ps}=req.query 
   User.find({us,ps})
