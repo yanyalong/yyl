@@ -1,9 +1,13 @@
 const express = require('express')
 const path = require('path')
 const db = require('./db/connect')
+
 // 启动服务器的同时连接数据库
 const app = express()
+var bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: false }))
 
+app.use(bodyParser.json())
 // 静态资源目录
 app.use('/',express.static(path.join(__dirname,'./www')))
 // 路由分发

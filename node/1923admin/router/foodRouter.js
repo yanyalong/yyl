@@ -46,11 +46,13 @@ router.get('/delFood',(req,res)=>{
   })
 })
 //添加数据
-router.get('/addFood',(req,res)=>{
-  let {name,price,img,foodType,desc} = req.query 
+router.post('/addFood',(req,res)=>{
+  let {name,price,img,foodType,desc} = req.body 
   Food.add(name,price,img,foodType,desc)
   .then((data)=>{res.send({err:0,msg:'添加ok'})})
-  .catch((data)=>{res.send({err:-1,msg:'添加失败'})})
+  .catch((err)=>{
+    console.log(err)
+    res.send({err:-1,msg:'添加失败'})})
 })
 //修改 
 router.get('/updateFood',(req,res)=>{
