@@ -170,7 +170,8 @@ let allPage = 0
 
 getFoodsData()
 function getFoodsData(){
-	let  url=`http://10.60.18.220:3000/admin/food/getFoods?page=${page}&pageSize=${pageSize}` 
+	let token = localStorage.getItem('token')
+	let  url=`http://10.60.18.220:3000/admin/food/getFoods?page=${page}&pageSize=${pageSize}&token=${token}` 
 	$.get(url,(data)=>{
 		console.log(data)
 		if(data.err === 0){

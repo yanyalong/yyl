@@ -68,6 +68,7 @@ function login(){
 	$.get(url,(data)=>{
 		console.log(data)
 		if(data.err === 0){
+      localStorage.setItem('token',data.token)
 			window.location.href='./index.html'
 		}
 	})

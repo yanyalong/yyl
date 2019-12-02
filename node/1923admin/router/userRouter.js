@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const  User = require('../db/model/userModel')
 const Mail=require('../utils/mail')
+const Jwt = require('../utils/jwt')
 let codes={} //保存邮箱和验证码
 
 //引入和用户表相关的数据模型
@@ -51,14 +52,28 @@ router.get('/reg',(req,res)=>{
  * @apiSuccess {String} msg  Lastname of the User.
  */
 router.get('/login',(req,res)=>{
+  console.log(111)
   let {us,ps}=req.query 
+  let token=null
   User.find({us,ps})
   .then((data)=>{
      if(data.length>=1){
-       res.send({err:0,msg:'登录ok'})
+      //  创建一个token 并且返回
+      // 获取登录用户的主键id
+       let userInfo={_id:data[0]._id,ot:1000*60*60*24*7}
+        token=Jwt.createToken(userInfo)
+
+      return User.updateOne({_id:data[0]._id},{token:token})
      }else{
-       res.send({err:-1,msg:'登录失败'})
+       throw '登录失败'
      }
+  })
+  .then((data)=>{
+    //  User.updateOne 成功之后的调用
+    res.send({err:0,msg:'登录ok',token:token})
+  })
+  .catch((err)=>{
+    res.send({err:-1,msg:'登录失败'})
   })
 })
 
