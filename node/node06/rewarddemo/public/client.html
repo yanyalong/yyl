@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  #box{
+    width: 300px;
+    height:500px;
+    background: pink;
+  }
+  .right{
+    width: 100%;
+    text-align: right;
+  }
+  .left{
+    width: 100%;
+    text-align: left;
+  }
+  </style>
+</head>
+<body>
+
+  <div id='box'>
+     <h3></h3>
+  </div>
+  <input type="text" >
+  <button onclick="send()">send</button>
+<script>
+//获取到用户名 
+let name=prompt('请输入名字')
+document.getElementsByTagName('h3')[0].innerHTML=name
+var ws = new WebSocket('ws://10.60.18.220:8888')
+// 和服务端连接ok
+ws.onopen=()=>{
+ console.log('连接服务端')
+ ws.send(JSON.stringify({type:'login',name:name}))
+}
+// 服务端断开连接
+ws.onclose=()=>{
+  console.log('服务端断开连接')
+}
+// 接受服务端消息
+ws.onmessage=(data)=>{
+//  console.log(data.data)
+createPop(data.data,1)
+}
+function send(){
+  // 将用户输入的内容发送发服务器
+  let value= document.getElementsByTagName('input')[0].value 
+  ws.send(JSON.stringify({type:"msg",msg:value,name:name}))
+  //将用户输入的内容添加到页面上
+  createPop(value,0)
+}
+// type 0 自发 1 接受的
+function createPop(value,type){
+  let div = document.createElement('div')
+  div.innerHTML=value
+  if(type===0){
+    div.className='right'
+  }else{
+    div.className='left'
+  }
+  document.getElementById('box').append(div)
+}
+</script>
+</body>
+</html>

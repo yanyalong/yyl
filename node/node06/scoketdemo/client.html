@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" >
+  <button onclick="send()">send</button>
+<script>
+var ws = new WebSocket('ws://localhost:8888')
+// 和服务端连接ok
+ws.onopen=()=>{
+ console.log('连接服务端')
+}
+// 服务端断开连接
+ws.onclose=()=>{
+  console.log('服务端断开连接')
+}
+// 接受服务端消息
+ws.onmessage=(data)=>{
+  console.log(data.data)
+}
+function send(){
+  let value= document.getElementsByTagName('input')[0].value 
+  ws.send(value)
+}
+</script>
+</body>
+</html>
