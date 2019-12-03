@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../base/vue.js"></script>
+  <style> 
+
+  </style>
+</head>
+<body>
+<div id='test'>
+ 1 
+</div>
+
+<script>
+console.time('demo')
+// for (let index = 0; index < 10000; index++) {
+//    let num=Number(document.getElementById('test').innerHTML)
+//    num++
+//    document.getElementById('test').innerHTML=num
+  
+// }
+// let num=Number(document.getElementById('test').innerHTML)
+// for (let index = 0; index < 10000; index++) {
+//    num++
+// }
+// document.getElementById('test').innerHTML=num
+// 过多的dom操作会影响页面运行效率
+console.timeEnd('demo')
+// <div class='demo' id='hehe'>你好世界<p></p><span></span></div>
+let obj={
+  tag:'div',
+  class:'demo',
+  id:'hehe',
+  text:'你好世界',
+  children:[
+    {
+      tag:'p',
+      text:'10001'
+    },{
+      tag:'span'
+    }
+  ]
+}
+//  虚拟dom本质就是内存中的一个对象，该对象和dom结构相互对应
+</script>
+</body>
+</html>

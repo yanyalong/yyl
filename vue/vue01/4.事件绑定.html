@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../base/vue.js"></script>
+  <style> 
+     .demo{
+       width: 100px;
+       height: 100px;
+       background: red;
+     }
+     .demo2{
+       width: 100px;
+       height: 100px;
+       background: blue;
+     }
+  </style>
+</head>
+<body>
+
+  <div id='app'>
+       <div v-if='show' class='demo'>
+           v-if
+       </div>
+       <!-- <button v-on:click='toggle(1,2,$event)'>toggle</button> -->
+       <button @click='toggle(1,2,$event)'>toggle</button>
+  </div>
+
+<script>
+new Vue({
+  el:"#app",
+  data:{
+    show:true
+  },
+  methods: {
+    toggle(num1,num2,e){
+      // console.log('点到我了',num1,num2,e)
+      console.log(this)
+      this.show=!this.show
+    }
+  },
+  
+})
+/*
+vue中事件绑定 v-on：事件名   处理函数写在实例里的methods
+在事件中 处理函数的默认参数是事件对象
+在事件里传递参数 就没有事件对象 如果需要通过$event 手动传递
+$event 在vue 中表示事件对象
+@=v-on 
+*/ 
+
+</script>
+</body>
+</html>

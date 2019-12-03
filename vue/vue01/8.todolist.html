@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../base/vue.js"></script>
+  <style> 
+    .red{
+      background: red;
+
+    }
+    .green{
+      background: green;
+    }
+  </style>
+</head>
+<body>
+
+<div id='app'>  
+  <input type="text" ref='hehe'>
+  <button @click='add'>add</button>
+ <ul>
+   <li v-for='(item,index) in list'
+     v-bind:class='item.state?"green":"red"'
+   >
+     {{item.msg}}
+
+     <span v-if='item.state'>已完成</span>
+     <button v-else 
+     v-on:click='update(index)'
+     >完成</button>
+     <button @click='del(index)'>del</button>
+   </li>
+ </ul>
+ {{list}}
+</div>
+   
+ 
+
+<script>
+new Vue({
+  el:'#app',
+  data:{
+    list:[{msg:'明晚看寄生虫',state:false},
+          {msg:'今晚看小丑',state:false},
+          {msg:'宝莱坞机器人之恋',state:true}]
+  },
+  methods: {
+    update(index){
+       this.list[index].state=true
+    },
+    add(){
+      console.log(this)
+      let value=this.$refs.hehe.value
+      this.list.push({state:false,msg:value})
+    },
+    del(index){
+      console.log('del',index)
+      this.list.splice(index,1)
+    }
+  },
+})
+/*
+todolist  
+1.显示事件 v
+2.添加事件v
+4.删除事件v
+3.完成事件
+5.完成 绿 未完成红
+6.
+
+1.9*9 乘法表
+2.创建一个表格  
+   1.隔行变色 红蓝
+   2.鼠标滑过有特效
+   3.下拉菜单  红蓝  红绿  粉蓝
+3.todolist 在写一遍
+
+*/
+</script>
+</body>
+</html>

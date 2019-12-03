@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../base/vue.js"></script>
+  <style> 
+     *{
+       padding: 0;
+       margin: 0;
+       list-style: none;
+     }
+     .box{
+       width: 400px;
+       height: 500px;
+       background: pink;
+
+     }
+     .nav{
+       width: 400px;
+       height: 80px;
+       line-height: 80px;
+       text-align: center;
+       font-size:0;
+      
+     }
+     li{
+      font-size: 18px;
+      display: inline-block;
+       /* border: 1px solid gray; */
+       width: 80px;
+       background: green;
+     }
+     .sel{
+       background:skyblue;
+     }
+     .content{
+       width: 400px;
+       height: 420px;
+     }
+  </style>
+</head>
+<body>
+<div id='test'>
+ <div id='app'>  
+  <div class='box'>
+     <ul class='nav'>
+       <li v-for='item in movies'
+           v-bind:class='selItem===item?"sel":""'
+           v-on:click='toggle(item)'
+       >{{item}}</li>
+     
+     </ul>
+     <div class='content' 
+     v-for='item in movies'
+     v-show='item===selItem'
+     >
+       {{item}}
+     </div>
+  </div>
+   
+ </div>
+</div>
+
+<script>
+  new Vue({
+    el:'#app',
+    data:{
+      selItem:'科幻',
+      movies:['爱情','科幻','动作','恐怖','伦理']
+    },
+    methods: {
+      toggle(item){
+          this.selItem=item
+      }
+    },
+  })
+/*
+开发者不需要关注页面的渲染（dom操作），关注的是数据的变化  数据发生变化页面会自动更新
+tab选项卡
+1.导航
+2.容器
+3.点击导航容器发生改变
+4.导航有选中效果
+*/
+</script>
+</body>
+</html>

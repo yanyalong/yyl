@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../base/vue.js"></script>
+  <style> 
+    .red{
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+    .blue{
+      width: 100px;
+      height: 100px;
+      background: blue;
+    }
+  </style>
+</head>
+<body>
+
+  <div id='app'>
+
+       <div  v-bind:class='demo?"red":"blue"' >
+           v-if
+       </div>
+       <!-- <img v-bind:src="demo?imgs[1]:imgs[0]" alt=""> -->
+       <img :src="demo?imgs[1]:imgs[0]" alt="">
+       
+       <button @click='toggle'>toggle</button>
+  </div>
+
+<script>
+new Vue({
+  el:"#app",
+  data:{
+    demo:true,
+    imgs:['https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4014971929,2584146558&fm=26&gp=0.jpg',
+    'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2752453349,2871240348&fm=26&gp=0.jpg']
+  },
+  methods: {
+    toggle(){
+      this.demo=!this.demo
+    }
+  },
+  
+})
+/*
+vue中属性绑定 
+src='' class='' href=''
+v-bind:要绑定的属性=“变量或者表达式”
+v-bind:src  =:src
+*/ 
+
+</script>
+</body>
+</html>
