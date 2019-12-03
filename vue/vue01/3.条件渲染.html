@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../base/vue.js"></script>
+  <style> 
+     .demo{
+       width: 100px;
+       height: 100px;
+       background: red;
+     }
+     .demo2{
+       width: 100px;
+       height: 100px;
+       background: blue;
+     }
+  </style>
+</head>
+<body>
+
+  <div id='app'>
+       <div v-if='state' class='demo'>
+           v-if
+       </div>
+       <div v-elseif=''> 
+       </div>
+       <div v-else class='demo2'>
+          
+       </div>
+       <!-- <div v-show='state' class='demo'>
+           v-show
+       </div> -->
+  </div>
+
+<script>
+/*
+v-show 
+v-if 条件渲染  
+v-if='true/false' true 渲染 false 不渲染
+*/
+new Vue({
+  el:'#app',
+  data:{
+    state:true
+  }
+})
+
+</script>
+</body>
+</html>

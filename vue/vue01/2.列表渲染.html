@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../base/vue.js"></script>
+</head>
+<body>
+  <div id='app'>
+     <ul>
+       <!-- <li v-for='item in arr'>{{item}}</li> -->
+       <!-- <li v-for='(item,index) of arr'>{{item}}{{index}}</li> -->
+       <!-- <li v-for="(value,key,index) in obj">
+         {{key}}:{{value}}-{{index}}
+       </li> -->
+       <!-- <li v-for='item in num'>{{item}}</li> -->
+       <li v-for='item in string'>{{item}}</li>
+     </ul>
+  </div>
+
+<script>
+// 指令 directive  v-xxx 
+// v-for 列表渲染
+// v-for ='数组里的每一项 in/of 要循环的数据'
+new Vue({
+  el:'#app',
+  data:{
+    arr:[1,2,3,4,5,6,7,8],
+    obj:{us:123,ps:456,sex:0},
+    num:100,
+    string:'sfjkfsdkjfhskdfh'
+  }
+})
+
+</script>
+</body>
+</html>

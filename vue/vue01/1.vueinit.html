@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../base/vue.js"></script>
+</head>
+<body>
+  <div id='app'>
+     {{name}}
+     {{age}}
+  </div>
+  <hr>
+  <div id='hehe'>
+      {{name}}
+      {{age}}
+  </div>
+<script>
+  var  name='李雷'
+// 初始vue实例对象
+// 数据绑定 将实例里的数据可以直接渲染到页面 通过插值法
+// el将实例和元素进行绑定 该元素的内部可以用vue的语法尽心解析
+ new Vue({
+   el:'#app',
+   data:{
+     name:'你好世界',
+     age:16
+   }
+ })
+</script>
+</body>
+</html>
