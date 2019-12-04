@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../base/vue.js"></script>
+  <style>
+
+  </style>
+</head>
+<body> 
+  <div id='app1'>
+   {{name}}
+   <div v-hehe>
+
+   </div>
+  </div>
+  <hr>
+  <div id='app2'>
+    <div v-hehe>
+
+    </div>
+    {{string}}
+  </div>
+  
+<script>
+  // 全局自定义指令那个实例都可以用
+Vue.directive("hehe",{
+  inserted(el){
+    el.innerHTML='自定义指令'
+    console.log('自定义指令')
+  }
+})
+let  vm1=new Vue({
+  el:"#app1",
+  data:{
+     name:'实例1'
+  }
+
+})
+  
+let  vm2=new Vue({
+  el:"#app2",
+  data:{
+      string:"<h1>呵呵哒</h1>"
+  }
+
+})
+</script>
+
+</body>
+</html>

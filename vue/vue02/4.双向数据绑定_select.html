@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../base/vue.js"></script>
+  <style>
+
+  </style>
+</head>
+<body> 
+  <div id='app'>
+     <select v-model='sel'>
+       <option v-for='(item,index) in arrs'>{{item}}</option>
+     </select>
+   <hr>
+   <p>{{sel}}</p>
+  </div>
+<script>
+new Vue({
+  el:"#app",
+  data:{
+     arrs:['真实的魔鬼游戏','鬼怪','死亡手机','咒怨'],
+     sel:'鬼怪'
+  }
+
+})
+</script>
+<!-- 
+
+
+ -->
+</body>
+</html>

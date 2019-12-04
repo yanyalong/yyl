@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../base/vue.js"></script>
+  <style>
+
+  </style>
+</head>
+<body> 
+  <div id='app'>
+   <input type="text" v-model='msg'>
+   <hr>
+   <p>{{msg}}</p>
+  </div>
+<script>
+new Vue({
+  el:"#app",
+  data:{
+    msg:'呵呵'
+  }
+
+})
+</script>
+<!-- 
+v-model 实现双向数据绑定 
+通过v-model 将data里的数据和表单元素的value，data的数据是啥 表单的value就是啥
+表单元素的value值发生改变 会影响data里的数据
+data里的数据发生改变也会影响表单的value
+使用方式 1 和表单元素一起使用 2.和组件一起使用
+v-model =  事件绑定 input + value的属性绑定
+数据的绑定方式有2中
+1.数据绑定到视图 {{}}
+2.视图修改数据
+
+ -->
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../base/vue.js"></script>
+  <style>
+
+  </style>
+</head>
+<body> 
+  <div id='app'>
+   <input type="text" 
+    @input='inputChange'
+    :value="msg"
+   >
+   <hr>
+   <p>{{msg}}</p>
+  </div>
+<script>
+new Vue({
+  el:"#app",
+  data:{
+    msg:'呵呵'
+  },
+  methods: {
+    inputChange(e){
+      let value=e.target.value
+       console.log(e.target.value)
+      this.msg=value
+    }
+  },
+
+})
+</script>
+<!-- 
+input里输入内容
+p标签显示什么内容
+数据的绑定方式有2中
+1.数据绑定到视图 {{}}
+2.视图修改数据
+
+ -->
+</body>
+</html>
