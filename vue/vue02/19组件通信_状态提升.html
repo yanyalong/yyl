@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../base/vue.js"></script>
+  <style>
+     .green{
+       width: 100px;
+       height: 100px;
+       background: lightgreen;
+     }
+     .normal{
+       width: 100px;
+       height: 100px;
+       background: black;
+     }
+  </style>
+</head>
+<body> 
+  <div id='app1'>
+     <tp1 :toggle='show'></tp1>  
+     <tp2 @fafun='toggle'></tp2>
+  </div>
+
+
+  <!-- 组件的模板 -->
+  <template id='tp1'>
+    <div class='tp1'>
+       <div class='green' v-if='toggle'>
+
+       </div>
+    </div>
+  </template>
+    <!-- 组件的模板 -->
+  <template id='tp2'>
+    <div class='tp2'>
+       <button @click='sonToggle'>toogle</button>
+    </div>
+  </template>
+<script>
+Vue.component('tp1',{
+  template:'#tp1',
+  props:['toggle']
+
+})
+Vue.component('tp2',{
+  template:'#tp2',
+  methods: {
+    sonToggle(){
+      this.$emit('fafun')
+    }
+  },
+})
+let  vm1=new Vue({
+  el:"#app1",
+  data:{
+    show:false
+  },
+  methods: {
+    toggle(){
+      this.show=!this.show
+    }
+  },
+})
+
+/*
+亲兄弟  可以状态提升
+将要改变的数据 和 改变数据的方法 放到公用的父级上
+通过自定义属性 和自定义事件结合实现通信
+
+*/ 
+  
+</script>
+
+</body>
+</html>

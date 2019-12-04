@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../base/vue.js"></script>
+  <style>
+
+  </style>
+</head>
+<body> 
+  <div id='app1'>
+    <tp1></tp1>
+  </div>
+
+
+  <!-- 组件的模板 -->
+  <template id='tp1'>
+    <div class='tp1'>
+       这里是组件1
+       <tp2></tp2>
+    </div>
+  </template>
+    <!-- 组件的模板 -->
+  <template id='tp2'>
+    <div class='tp2'>
+        这里是组件2
+
+    </div>
+  </template>
+<script>
+// 局部组件在注册的同时已经确定了嵌套关系
+let  vm1=new Vue({
+  el:"#app1",
+  data:{
+     name:'实例1'
+  },
+  components:{
+    tp1:{
+      template:"#tp1",
+      components:{
+        tp2:{template:'#tp2'}
+      }
+      },
+    // tp2:{template:'#tp2'}
+  }
+
+})
+
+  
+</script>
+
+</body>
+</html>

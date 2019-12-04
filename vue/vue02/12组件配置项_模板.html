@@ -15,20 +15,23 @@
      <hehe></hehe>
   </div>
   <hr>
-  <div id='app2'>
-    <hehe></hehe>
- </div>
+  <!-- 组件的模板 -->
+  <template id='tp1'>
+    <div class='tp1'>
+        好地方接口的是分类深度较
+        <div></div>
+    </div>
+  </template>
   
 <script>
-/*
-1.创建组件
-2.注册组件
-3.使用组件
-*/ 
-let component = Vue.extend({
-  template:'<h1>🙃</h1>'
+
+// Vue.component('hehe',{
+//   template:'<h1>🙃</h1>'
+// })
+// 组件模板要求只能有一个跟元素
+Vue.component('hehe',{
+  template:'#tp1'
 })
-Vue.component('hehe',component)
 let  vm1=new Vue({
   el:"#app1",
   data:{
@@ -36,13 +39,7 @@ let  vm1=new Vue({
   }
 
 })
-let  vm2=new Vue({
-  el:"#app2",
-  data:{
-     name:'实例1'
-  }
 
-})
   
 </script>
 

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../base/vue.js"></script>
+  <style>
+     .green{
+       width: 100px;
+       height: 100px;
+       background: lightgreen;
+     }
+     .normal{
+       width: 100px;
+       height: 100px;
+       background: black;
+     }
+  </style>
+</head>
+<body> 
+  <div id='app1'>
+     <tp1></tp1>
+  </div>
+
+
+  <!-- 组件的模板 -->
+  <template id='tp1'>
+    <div class='tp1'>
+       这里是爸爸
+       <hr> 
+       爸爸钱包的余额 :{{money}}
+       <!-- <div @click='fabuy'></div> -->
+       <tp2 @hehe='fabuy'></tp2>
+       <!-- tp2身上绑定了一个自定义事件 事件名 hehe 处理函数是父组件的fabuy方法 -->
+    </div>
+  </template>
+    <!-- 组件的模板 -->
+  <template id='tp2'>
+    <div class='tp2'>
+        这里是儿子
+        <button @click='buy'>buybuybuy</button>
+    </div>
+  </template>
+<script>
+Vue.component('tp1',{
+  template:'#tp1',
+  data(){
+    return{
+      money:20
+    }
+  },
+  methods: {
+    fabuy(num){
+      this.money-=num
+      console.log('余额减减减')
+    }
+  },
+})
+Vue.component('tp2',{
+  template:'#tp2',
+  methods: {
+    buy(){
+      console.log('买买买')
+      // 触发绑定在组件身上的自定义事件
+      this.$emit('hehe',5)
+    }
+  },
+
+})
+let  vm1=new Vue({
+  el:"#app1",
+})
+
+/*
+子父通信 自定义事件
+子组件控制父组件的数据
+子组件的$emit 可以触发绑定在组件身上的自定义事件
+this.$emit('自定义事件名',传递的参数)
+
+*/ 
+  
+</script>
+
+</body>
+</html>

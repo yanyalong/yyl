@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../base/vue.js"></script>
+  <style>
+
+  </style>
+</head>
+<body> 
+  <div id='app1'>
+     <son></son>
+    
+  </div>
+
+
+  <!-- 组件的模板 -->
+  <template id='tp1'>
+    <div class='tp1'>
+       这里是组件1
+     
+    </div>
+  </template>
+    <!-- 组件的模板 -->
+  <template id='tp2'>
+    <div class='tp2'>
+        这里是组件2
+        <father></father>
+    </div>
+  </template>
+<script>
+// 组件标签内部内容不会被渲染 
+// 全局组件没有固定的嵌套关系 随着书写方式不同嵌套关系也不一样
+Vue.component('father',{
+  template:'#tp1'
+})
+Vue.component('son',{
+  template:'#tp2'
+})
+
+let  vm1=new Vue({
+  el:"#app1",
+  data:{
+     name:'实例1'
+  }
+
+})
+
+  
+</script>
+
+</body>
+</html>

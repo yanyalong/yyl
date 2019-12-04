@@ -28,11 +28,14 @@
 let component = Vue.extend({
   template:'<h1>🙃</h1>'
 })
-Vue.component('hehe',component)
+
 let  vm1=new Vue({
   el:"#app1",
   data:{
      name:'实例1'
+  },
+  components:{
+    hehe:component
   }
 
 })
