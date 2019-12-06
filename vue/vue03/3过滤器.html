@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>todolist</title>
+  <script src="../base/vue.js"></script>
+  <style>
+    .demo{
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+      {{time|hehe}}
+      <hr>
+      {{time|hehe('/')}}
+      <hr>
+      {{time|hehe('-')}}
+  </div>
+
+
+  <script>
+  // Vue.filter('hehe',(data,tag)=>{
+  //   // data 要过滤的数据 tag 是参数
+  //    var tag=tag||'.'
+  //    let y =(new Date(data)).getFullYear()
+  //    let m  =(new Date(data)).getMonth()+1
+  //    let d  =(new Date(data)).getDate()
+  //    return `${y}${tag}${m}${tag}${d}`
+  // })
+    new Vue({
+      el:'#app',
+      data:{
+        time:(new Date()).getTime()
+      },
+      filters:{
+        hehe:(data,tag)=>{
+            // data 要过滤的数据 tag 是参数
+            var tag=tag||'.'
+            let y =(new Date(data)).getFullYear()
+            let m  =(new Date(data)).getMonth()+1
+            let d  =(new Date(data)).getDate()
+            return `${y}${tag}${m}${tag}${d}`
+          }
+      }
+    })
+  </script>
+<!-- 
+2017.01.01  pc
+2017年01月01日 移动
+2017、01、01
+2017/01/01
+过滤器的作用对数据进行处理
+全局过滤器
+Vue.filter(过滤器的名字,(data)=>{
+  data 要过滤的数据
+  数据处理
+  返回数据
+})
+使用过滤器
+{{过滤数据|过滤器的名字}}
+局部过滤器
+
+ -->
+</body>
+</html>

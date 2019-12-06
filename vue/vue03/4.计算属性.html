@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>todolist</title>
+  <script src="../base/vue.js"></script>
+  <style>
+    .demo{
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+     {{(num*3+4)/5+6}}
+     <hr>
+     方法：{{test1()}}
+     <hr>
+     {{test2}}
+
+     <hr>
+     {{num2}}
+     <button @click='add'>num2</button>
+  </div>
+
+
+  <script>
+
+    new Vue({
+      el:'#app',
+      data:{
+        num:1,
+        num2:1
+      },
+      computed: {
+        test2(){
+          console.log('计算属性')
+          return (this.num*3+4)/5+6
+        }
+      },
+      methods: {
+        add(){
+          this.num++
+        },
+        test1(){
+          console.log('方法')
+          return (this.num*3+4)/5+6
+        }
+      },
+
+    })
+  </script>
+<!-- 
+对data里的数据进行大量处理后显示
+通过方法的return值
+计算属性是一个对象
+对象里的key值可以直接当成data的数据使用
+计算属性一般和data里的数据建立联系
+关联发生改变 计算属性会重新计算
+计算属性的缓存性 只有相关联的数据发生改变计算属性才会重新执行
+ -->
+</body>
+</html>

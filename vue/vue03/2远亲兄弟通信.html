@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>todolist</title>
+  <script src="../base/vue.js"></script>
+  <style>
+    .demo{
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+     <tp1></tp1>
+     <tp2></tp2>
+  </div>
+
+  <!-- 输入组件 -->
+  <template id='tp1'>
+    <div>
+        <div class='demo' v-if='show'>
+
+        </div>
+    </div>
+  </template>
+  <!-- 列表组件 -->
+  <template id='tp2'>
+    <div>
+      <button @click='toggle'>toggle</button>
+    </div>
+  </template>
+  <script>
+   let  vm=new Vue()
+    
+
+    Vue.component('tp1',{
+      template:'#tp1',
+      data(){
+        return{
+          show:true
+        }
+      },
+      methods: {
+        toggle(){
+          this.show=!this.show
+        }
+      },
+      created() {
+        console.log(vm)
+        vm.$on('hehe',this.toggle)
+      },
+    })
+    Vue.component('tp2',{
+      template:'#tp2',
+      methods: {
+        toggle(){
+          vm.$emit('hehe')
+        }
+      },
+    })
+    new Vue({
+      el:'#app',
+    })
+  </script>
+<!-- 
+事件总线  eventbus 
+1.创建一个空的vue实例对象
+2.通过 vue 里的$on 可以注册一个事件
+3.通过vue 里的$emit 可以触发注册的事件
+
+
+ -->
+</body>
+</html>

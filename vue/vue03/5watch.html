@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>todolist</title>
+  <script src="../base/vue.js"></script>
+  <style>
+    .demo{
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+     <p ref='hehe'>{{num}}</p>
+     <button @click='add'>add</button>
+  </div>
+
+
+  <script>
+
+    new Vue({
+      el:'#app',
+      data:{
+        num:1,
+
+      },
+      methods: {
+        add(){
+          this.num++
+        }
+      },
+      watch: {
+        num(newValue,oldValue){
+          console.log('new',newValue)
+          console.log('old',oldValue)
+          console.log(this.$refs.hehe)
+          console.log(this.$refs.hehe.innerHTML)
+
+        }
+      },
+
+    })
+  </script>
+<!-- 
+watch 监听某一个数据的改变
+参数1 改变之后的值 参数2 改变之前的值
+watch 内部 所有的dom元素都是改变之前的  
+ -->
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>todolist</title>
+  <script src="../base/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <box></box>
+  </div>
+  <!-- 容器组件 -->
+  <template id='box'>
+    <div >
+      box
+      <tp1 @hehe='faadd'></tp1>
+      <tp2 :list='list' :fafun='fadel'></tp2>
+    </div>
+  </template>
+  <!-- 输入组件 -->
+  <template id='input'>
+    <div>
+        <input type="text" v-model='inputValue'>
+        <button @click='sonadd'>add</button>
+    </div>
+  </template>
+  <!-- 列表组件 -->
+  <template id='list'>
+    <div>
+      <ul >
+        <li v-for='(item,index) in list'>
+          {{item}}
+          <button @click='sondel(index)'>del</button>
+        </li>
+      </ul>
+    </div>
+  </template>
+  <script>
+    new Vue({
+      el:'#app',
+      components:{
+        box:{
+          data(){
+            return{
+              list:[1,2,3,4,5,67]
+            }
+          },
+          methods: {
+            faadd(msg){
+              this.list.push(msg)
+            },
+            fadel(index){
+              this.list.splice(index,1)
+            }
+          },  
+          template:'#box',
+          components:{
+            'tp1':{
+              data(){
+                return{
+                  inputValue:''
+                }
+              },
+              template:'#input',
+              methods: {
+                sonadd(){
+                  this.$emit('hehe',this.inputValue)
+                }
+              },
+            },
+            'tp2':{
+              template:'#list',
+              methods: {
+                sondel(index){
+                  console.log(this)
+                  this.fafun(index)
+                }
+              },
+              props:{
+                list:{type:Array,default:[7,7,7]},
+                fafun:{type:Function}
+              }
+            }
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>
