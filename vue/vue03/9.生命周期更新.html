@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>todolist</title>
+  <script src="../base/vue.js"></script>
+
+  <style>
+
+  </style>
+</head>
+<body>
+  <div id="app">
+      <banner></banner>
+  </div>
+
+  <template id='banner'>
+     <div>
+       生命周期创建
+       <p ref='age'> {{age}}</p>
+       <button @click='add'>add</button>
+     </div>
+  </template>
+  <script>
+  Vue.component('banner',{
+    data(){
+      return{
+        age:16
+      }
+    },
+    methods: {
+      add(){
+        this.age++
+      }
+    },
+    template:'#banner',
+    beforeCreate() {
+       // 没有数据  没有dom 基本不用  可以做网络请求
+       console.log('创建之前')
+      //  console.log(this)
+      //  console.log(this.age)
+      //  console.log(this.$refs.age)
+    },
+   created() {
+       // 有数据  没有dom 可以修改数据  可以做网络请求（推荐）
+       // 修改数据 不会触发更新的生命周期  beforeupdate updated
+       console.log('创建结束')
+      //  console.log(this)
+      //  console.log(this.age)
+      //  this.age=18
+      //  console.log(this.$refs.age)
+    },
+    beforeMount() {
+      console.log('挂载之前')
+      // 有数据 没有dom  可以网络请求 
+      // 修改数据不会触发更新的生命周期
+      //  console.log(this)
+      //  console.log(this.age)
+      //  this.age=18
+      //  console.log(this.$refs.age)
+    },
+   mounted() {
+    // 有数据 修改数据  会触发更新的生命周期
+    //有dom dom相关的初始化操作  
+      console.log('挂载结束')
+
+      //  console.log(this)
+      //  console.log(this.age)
+      //  this.age=18
+      //  console.log(this.$refs.age)
+    },
+    beforeUpdate() {
+      console.log('更新之前')
+      // 数据发生改变 dom暂未更新
+      console.log(this)
+       console.log(this.age)// 17
+       this.age=Math.random()
+       console.log(this.$refs.age.innerHTML) //16
+    },
+    updated() {
+      // 更新的生命周期  做赋值操作容易引起死循环
+      console.log('更新结束')
+      // 数据发生改变dom更新完毕
+      console.log(this.age)// 17
+       console.log(this.$refs.age.innerHTML) //17
+    },
+  })
+    new Vue({
+      el:'#app',
+    })
+  </script>
+<!-- 
+
+ -->
+</body>
+</html>

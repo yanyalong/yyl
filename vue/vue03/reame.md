@@ -75,7 +75,42 @@ Vue.componet('组件名',组件)
 父子通信   props 传递一个数据 给子组件使用
 子父通信   1.props将父组件的方法 传递给子组件调用 2.在子组件绑定一个自定义事件  由子组件通过$emit 触发
 
+#### 过滤器 
+全局过滤器
+Vue.filter('name',(data,[params])=>{ return 过滤后的数据}) 
+局部过滤器
+new Vue（{
+  filters:{
+    name:()=>{}
+  }
+}）
+{{name|filtername()}}
+#### computed 
+new Vue({
+  computed:{
+    age(){
+      <!-- 可以和数据进行关联 -->
+      return this.age*3+3
+    }
+  }
+})
+计算属性的缓存性 关联数据变化引起重新计算 无关数据变化不会引起重新计算
+#### watch 监听
+监听数据的改变
+new Vue({
+  watch:{
+    要监听的数据:(newValue,oldVaue)=>{
+        dom 元素全是更改之前的
+    }
+  }
+})
 
+#### 生命周期
+11 钩子函数总数  84个阶段每个2个钩子  2 和缓存相关的钩子  1 捕获错误
+常用的 
+ceated  数据请求
+mounted dom初始化
+beforeDestory  擦屁股的操作 弥补遗憾
 
 #### vue 脚手架工具
 全局安装脚手架命令
@@ -84,3 +119,8 @@ npm install @vue/cli -g
 vue create 项目名字 
 进入项目目录下
 npm run serve 
+
+#### 单文件组件（一个文件就是一个组件）
+模板 html
+js
+样式 

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>todolist</title>
+  <script src="../base/vue.js"></script>
+
+  <style>
+   .box{
+     height: 4000px;
+   }
+   .demo{
+     position: fixed;
+     top: 50px;
+     left: 50px;
+     width: 100px;
+     height: 100px;
+     border: 1px solid red;
+   }
+   button{
+     position: fixed;
+     top:10px;
+     left: 10px;
+   }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <banner v-if='show'></banner>
+    <button @click='toggle'>toggle</button>
+    <div class='box'>
+
+    </div>
+  </div>
+
+  <template id='banner'>
+     <div class='demo' :style="{background:color}">
+   
+     </div>
+  </template>
+  <script>
+  Vue.component('banner',{
+    data(){
+      return{
+        color:'skyblue'
+      }
+    },
+    template:'#banner',
+    methods: {
+      changeColor(){
+        console.log('变色')
+        let r =parseInt(Math.random()*255)
+        let g =parseInt(Math.random()*255)
+        let b =parseInt(Math.random()*255)
+        let a =Math.random()*255
+        this.color=`rgba(${r},${g},${b},${a})`
+      }
+    },
+    created() {
+      window.addEventListener('scroll',this.changeColor)
+    },
+    beforeDestroy() {
+      window.removeEventListener('scroll',this.changeColor)
+    },
+  })
+    new Vue({
+      el:'#app',
+      data:{
+        show:true
+      },
+      methods: {
+        toggle(){
+          this.show=!this.show
+        }
+      },
+    })
+
+/*
+组件内部有一个div 
+div 可以通过鼠标滚轮控制随机改变颜色
+ a div变色
+ b.鼠标的滚轮
+
+销毁的生命周期  擦屁股  在组件销毁之前  将无用全局事件 全局计时器  销毁
+
+*/ 
+  </script>
+
+</body>
+</html>

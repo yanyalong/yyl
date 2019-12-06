@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>todolist</title>
+  <script src="../base/vue.js"></script>
+
+  <style>
+
+  </style>
+</head>
+<body>
+  <div id="app">
+      <banner v-if='show'></banner>
+      <button @click='toggle'>toggle</button>
+  </div>
+
+  <template id='banner'>
+     <div>
+       生命周期创建
+       <p ref='age'> {{age}}</p>
+     </div>
+  </template>
+  <script>
+  Vue.component('banner',{
+    template:'#banner',
+    data(){
+      return{
+        age:16
+      }
+    },
+    beforeDestroy() {
+       console.log('销毁之前')  
+       console.log(this.age)
+       console.log(this.$refs.age.innerHTML)
+    },
+    destroyed() {
+      console.log('销毁结束')
+      console.log(this.age)
+      console.log(this.$refs.age.innerHTML)
+    },
+
+  })
+    new Vue({
+      el:'#app',
+      data:{
+        show:true
+      },
+      methods: {
+        toggle(){
+          this.show=!this.show
+        }
+      },
+    })
+  </script>
+<!-- 
+
+ -->
+</body>
+</html>

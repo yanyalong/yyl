@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>todolist</title>
+  <script src="../base/vue.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">    
+  <script src="https://unpkg.com/swiper/js/swiper.js"> </script> 
+  <style>
+
+  </style>
+</head>
+<body>
+  <div id="app">
+      <banner></banner>
+      <hehe></hehe>
+  </div>
+
+  <template id='banner'>
+      <div class="swiper-container">
+          <div class="swiper-wrapper">
+              <div class="swiper-slide">Slide 1</div>
+              <div class="swiper-slide">Slide 2</div>
+              <div class="swiper-slide">Slide 3</div>
+          </div>
+      </div>
+  </template>
+  <script>
+  Vue.component('banner',{
+    template:'#banner',
+    methods: {
+      initBanner(){
+        var mySwiper = new Swiper ('.swiper-container', {})
+      }     
+    },
+    mounted() {
+      this.initBanner() 
+    }
+  })
+    new Vue({
+      el:'#app',
+    })
+  </script>
+<!-- 
+需要在banner 组件创建的时候 自动执行一个初始化函数
+人生
+   入世前  发育自己
+入世 
+   在世    更新自己
+离世   回顾人生  有遗憾 弥补遗憾  
+   
+创建 beforeCreate  created 
+挂载 beforeMount   mounted
+更新 beforeUpdate  updated
+销毁 beforeDestory  destoryed
+数据 dom  可以干什么 推荐干什么 不能干什么
+ -->
+</body>
+</html>
