@@ -1,6 +1,8 @@
 <template>
   <div >
-     这里是歌手组件
+     这里是我的
+     <hr>
+     <router-view></router-view>
   </div>
 </template>
 
@@ -8,9 +10,6 @@
 
 
 export default {
-  created() {
-    console.log('歌手组件',this.$route) 
-  }
 
 }
 </script>

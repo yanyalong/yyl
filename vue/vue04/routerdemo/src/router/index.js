@@ -14,21 +14,51 @@ import Recommend from  '../Recommend.vue'
 import Recommend1 from  '../Recommend1.vue'
 import Recommend2 from  '../Recommend2.vue'
 import Singer from  '../Singer.vue'
+import Rank from  '../Rank.vue'
+import My from  '../My.vue'
+import Login from  '../Login.vue'
+import Info from  '../Info.vue'
 let router=new VueRouter({
   mode:'history',//'hash'默认,
   routes:[
-    {
-      path:'/recommend/a/b/cc/d/d/e/e/d/d/d/d',
+    // {
+    //   path:'/recommend/a/b/cc/d/d/e/e/d/d/d/d',
+    //   name:'hehe',
+    //   components:{
+    //     default:Recommend,
+    //     r1:Recommend1,
+    //     r2:Recommend2,
+    //   }
+    // },
+       {
+      path:'/recommend',
       name:'hehe',
-      components:{
-        default:Recommend,
-        r1:Recommend1,
-        r2:Recommend2,
-      }
+      component:Recommend
     },
     {
-      path:'/singer',
+      path:'/singer/:hehe/:xixi',
+      name:'singer',
       component:Singer
+    },
+    {
+      path:'/my',
+      component:My,
+      children:[
+        {
+          path:'login',
+          component:Login
+        },{
+          path:'info',
+          component:Info
+        }
+      ]
+    },
+    {
+      path:'/rank',
+      component:Rank
+    },{
+      path:'/',
+      redirect:'/recommend'
     }
   ]
 })

@@ -199,3 +199,21 @@ history 没有#
 ##### 命名视图 
 给router-view 起一个名字 
 让不同的router-view 渲染不同的组件
+##### 声明式导航 与 编程式导航
+声明式导航  a  router-link
+编程式导航  js this.$router.push()    push replace  go(-1) goback
+#### 重定向
+redirec
+#### 路由传参
+1.params
+  this.$router.push({name:'hehe',params:{us:123}})
+  页面刷新数据丢失
+  不能和path 一起使用
+2.query
+this.$router.push({name:'hehe',query:{us:123}})
+数据拼接到地址栏 有长度限制
+页面刷新数据存在在
+3.动态路由
+将数据放到路径里
+解决参数params刷新丢失问题
+不适用大量数据传递

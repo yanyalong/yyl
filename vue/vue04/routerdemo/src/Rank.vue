@@ -1,6 +1,6 @@
 <template>
   <div >
-     这里是歌手组件
+     这里是排行
   </div>
 </template>
 
@@ -8,9 +8,6 @@
 
 
 export default {
-  created() {
-    console.log('歌手组件',this.$route) 
-  }
 
 }
 </script>
