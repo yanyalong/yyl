@@ -18,3 +18,17 @@ em 父元素的字高
 1. 设备改变 主要是宽度的变化
 2. 找根元素字体大小和屏幕宽度的关系
 3. 书写尺寸的时候将px 转化为rem
+
+#### 轮播图
+swiper 
+$nexttick
+异步问题
+
+#### 滚动层
+overflow：scroll auto
+iscroll 
+better-scroll
+.....
+1.创建视图层和内容层
+2.引入betterscroll 初始化
+3.注意给视图层创建固定高度
