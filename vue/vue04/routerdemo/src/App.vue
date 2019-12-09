@@ -15,14 +15,18 @@
           <button @click='jump("my")' >我的</button>
       <hr>
       <router-view></router-view>
+      <test-demo></test-demo>
       <!-- <router-view name='r1'></router-view>
       <router-view name='r2'></router-view> -->
   </div>
 </template>
 
 <script>
+
 export default {
+   components:{testDemo},
   methods: {
+   
     back(){
       this.$router.go(-1)
     },

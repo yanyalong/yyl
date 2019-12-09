@@ -1,14 +1,23 @@
 <template>
 <div id='app'> 
-sfsf
+<!-- 头部 -->
+<my-header></my-header>
+<!-- tab -->
+<my-tab></my-tab>
+<!-- 路由切换 -->
+<router-view></router-view>
 </div>
 </template>
-
+<script>
+import  myHeader  from './components/my-header'
+import  myTab from  './components/my-tab'
+export default {
+  components:{myHeader,myTab}
+}
+</script>
 <style lang="less" scoped>
-@import './style/mixin.less';
+@import '~style/index.less';
 #app{
-  .w(76);
-  height: 100px;
-  background: red;
+  background: @black;
 }
 </style>
