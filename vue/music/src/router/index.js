@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 import Recommend from 'pages/Recommend'
-import Singer from 'pages/Singer'
+import Singer from 'pages/Singer/Singer.vue'
 import Rank from 'pages/Rank'
 import Search from 'pages/Search'
 
