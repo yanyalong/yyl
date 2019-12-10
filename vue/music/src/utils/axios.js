@@ -9,7 +9,7 @@ import axios from 'axios'
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
   // Do something before request is sent
-  console.log('请求拦截器',config)
+  // console.log('请求拦截器',config)
   // config.url='https://www.baidu.com'
   return config;
 }, function (error) {
@@ -20,7 +20,7 @@ axios.interceptors.request.use(function (config) {
 // Add a response interceptor
 axios.interceptors.response.use(function (response) {
   // Do something with response data
-  console.log('响应拦截器',response)
+  // console.log('响应拦截器',response)
   return response.data;
 }, function (error) {
   // Do something with response error
