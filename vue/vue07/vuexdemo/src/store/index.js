@@ -1,42 +1,36 @@
 import Vue from 'vue'
 import Vuex from  'vuex'
 Vue.use(Vuex)
-
-// 创建全局状态（变量）管理对象
+import A from  './a'
+import B from  './b'
 let store = new Vuex.Store({
-  state:{
-    name:'韩梅梅',
-    age:'16',
-    sex:0,
-    phone:1231312313
-  },
-  //修改state里数据的唯一途径
-  mutations:{
-    changeStateName(state,params){
-      // state 全局状态数据
-      //params 通过commit 触发传递的方法
-      console.log('修改state数据',state,params)
-      state.name=params.us     
-    }
-  },
-  // 异步存放的地方  请求成功后发起 commit 
-  actions:{
-    getNetName(context,params){
-      console.log('触发actions',arguments)
-      let {commit}=context
-      setTimeout(()=>{
-        let  name='来自星星的名字'
-        commit('changeStateName',{us:name,ps:123})
-      },500)
-    }
-  },
-  // 派生属性 类似于computed 可以获取state前
-  // 做数据的处理
-  getters:{
-    doubleName(state){
-      return state.name+state.name 
-    }
-  }
+   modules:{A,B}
 })
+// let store = new Vuex.Store({
+//   state:{
+//     hehe:'根状态'
+//   },
+//   modules:{
+//     "A":{
+//       namespaced:true,
+//       state:{name:'韩梅梅'},
+//       mutations:{hehe(){},}
+//     },
+//     "B":{
+//       namespaced:true,
+//       state:{age:16},
+//       mutations:{hehe(){}}
+//     }
+//   }
+// })
 
+/*
+不分模块
+store.state.name 
+分模块
+store.模块名.state.name
+
+划分模块之后 state会被添加模块名 但是其他的getters  mutations  actions 和不分模块一样
+namespace 命名空间 防止不同的模块有相同的名字
+*/
 export default store

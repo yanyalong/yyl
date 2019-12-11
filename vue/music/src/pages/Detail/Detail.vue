@@ -4,7 +4,9 @@
     <h3>{{name}}</h3>
     <img :src="img" alt="" width="60">
     <ul>
-      <li v-for='(item,index) in list' :key='index'>
+      <li v-for='(item,index) in list' :key='index'
+          @click="goPlay(index)"
+      >
         <p>{{item.songname}}</p>
         <p>
           <span v-for='(sItem,sIndex) in item.singer' :key='sIndex'>{{sItem.name}}</span>
@@ -17,6 +19,7 @@
 <script>
 import {getSongListByMid} from 'api/singer.js'
 import {getAvator} from 'pages/Singer/singer.js'
+import {mapMutations} from 'vuex'
 export default {
   data(){
     return {
@@ -26,6 +29,13 @@ export default {
     }
   },
   methods:{
+    ...mapMutations(['addSongList','changeCurrentSongIndex','changeFullScreen']),
+    goPlay(index){
+      // 将当前的歌单信息添加到vuex里
+      this.addSongList(this.list)
+      this.changeCurrentSongIndex(index)
+      this.changeFullScreen(true)
+    },
     back(){
       this.$router.go(-1)
     },

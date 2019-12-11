@@ -3,9 +3,9 @@
       <son1></son1>
       <son2></son2>
       <hr>
-      <button @click='changeName'>changeName</button>
-      <button @click='changeNameNet'>changeNameNet</button>
-      {{this.$store.getters.doubleName}}
+      <button @click="changeName('呵呵哒')"> 改名</button>
+      <button @click="changeAge(88)"> 改名</button>
+
   </div>
 </template>
 
@@ -16,20 +16,11 @@ import {mapMutations,mapActions} from 'vuex'
 export default {
   components:{son1,son2},
   methods: {
-    ...mapMutations(['changeStateName']),
-    ...mapActions(['getNetName']),
-    changeName(){
-      this.changeStateName({us:'来自同步的数据',ps:123})
-      // this.$store.commit('changeStateName',{us:'来自同步的数据',ps:123})
-    },
-    changeNameNet(){
-      // this.$store.dispatch('getNetName',{us:123,ps:456})
-       this.getNetName({us:123,ps:456})
-    }
-  },
-  created(){
-    console.log(this)
+    ...mapMutations({changeName:'A/changeName',
+                     changeAge :'B/changeAge'
+    })
   }
+
 }
 </script>
 

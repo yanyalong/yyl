@@ -1,8 +1,6 @@
 <template>
   <div id="app">
       <h3>组件1</h3>
-      <!-- {{this.$store.state.name}} -->
-      mapState{{stateName}}
       {{name}}
   </div>
 </template>
@@ -12,16 +10,8 @@
 import {mapState} from 'vuex'
 export default {
   computed: {
-    
-    // ...mapState(['name','age','sex']),
-    ...mapState({stateName:state=>state.name}),
-    name(){
-      return "hehe"
-    }
+    ...mapState({name:state=>state.A.name})
   },
-  created(){
-    console.log(this)
-  }
 }
 </script>
 

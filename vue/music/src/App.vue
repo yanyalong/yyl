@@ -6,13 +6,16 @@
 <my-tab></my-tab>
 <!-- 路由切换 -->
 <router-view></router-view>
+<!-- 播放器页面 -->
+<player></player>
 </div>
 </template>
 <script>
 import  myHeader  from './components/my-header'
 import  myTab from  './components/my-tab'
+import player from 'pages/Player/Player.vue'
 export default {
-  components:{myHeader,myTab}
+  components:{myHeader,myTab,player}
 }
 </script>
 <style lang="less" scoped>

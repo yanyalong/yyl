@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import  './style/reset.css'
 import axios from 'utils/axios.js'
-import { prototype } from 'stream'
+import store from './store'
 // 把样式当成模块引入
 Vue.config.productionTip = false
 
@@ -13,5 +13,6 @@ Vue.prototype.$axios=axios
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

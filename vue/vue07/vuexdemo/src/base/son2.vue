@@ -1,22 +1,17 @@
 <template>
   <div id="app">
       <h3>组件2</h3>
-      <!-- {{this.$store.getters.doubleName}} -->
-      {{doubleName}}
+      {{age}}
   </div>
 </template>
 
 <script>
 
-import {mapGetters} from  'vuex'
+import {mapState} from  'vuex'
 export default {
-  computed: {
-    ...mapGetters(['doubleName'])
-  },
-
-  created(){
-    console.log(this)
-  }
+ computed: {
+   ...mapState({age:state=>state.B.age})
+ },
 }
 </script>
 
