@@ -42,10 +42,10 @@ export default {
     getSongData(list){
       console.log(list)
       let arr=list.map((item,index)=>{
-        let {albumdesc,albummid,albumname,singer,songmid,songname}=item.musicData
+        let {albumdesc,albummid,albumname,singer,songmid,songname,interval}=item.musicData
         let albumUrl=getAlbum(albummid)
         // 根据id 获取图片
-        return  {albumdesc,albummid,albumname,singer,songmid,songname,albumUrl}
+        return  {albumdesc,albummid,albumname,singer,songmid,songname,albumUrl,interval}
       })
       return arr
     }
