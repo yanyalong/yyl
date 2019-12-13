@@ -2,6 +2,9 @@
 export const getAvator=(mid='002J4UUk29y8BY')=>{
   return `https://y.gtimg.cn/music/photo_new/T001R300x300M000${mid}.jpg?max_age=2592000`
 }
+export const getAlbum=(albummid='003y8dsH2wBHlo')=>{
+  return `https://y.gtimg.cn/music/photo_new/T002R300x300M000${albummid}.jpg?max_age=2592000`
+}
 export const getData=(arrs)=>{
   //  将请求的数据向目标数据转换
     // console.log(arrs)

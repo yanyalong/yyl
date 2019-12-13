@@ -17,8 +17,8 @@
   </div>
 </template>
 <script>
-import {getSongListByMid} from 'api/singer.js'
-import {getAvator} from 'pages/Singer/singer.js'
+import {getSongListByMid,getSongPurl} from 'api/singer.js'
+import {getAvator,getAlbum} from 'pages/Singer/singer.js'
 import {mapMutations} from 'vuex'
 export default {
   data(){
@@ -43,7 +43,9 @@ export default {
       console.log(list)
       let arr=list.map((item,index)=>{
         let {albumdesc,albummid,albumname,singer,songmid,songname}=item.musicData
-        return  {albumdesc,albummid,albumname,singer,songmid,songname}
+        let albumUrl=getAlbum(albummid)
+        // 根据id 获取图片
+        return  {albumdesc,albummid,albumname,singer,songmid,songname,albumUrl}
       })
       return arr
     }
@@ -53,9 +55,14 @@ export default {
     console.log(this.$route.params)
     getSongListByMid(mid).then((res)=>{
       console.log(res)
+      
       this.name=res.data.singer_name
       this.img=getAvator(res.data.singer_mid)
-      this.list=this.getSongData(res.data.list)
+      let list=this.getSongData(res.data.list)
+      // 获取真实的url
+      getSongPurl(list).then((res)=>{
+        this.list=res
+      })
     })
   }
 }

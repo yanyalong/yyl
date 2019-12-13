@@ -12,6 +12,13 @@ module.exports={
          pathRewrite:{
            "^/hehe":''  //路径重新
          }
+       },
+       "xixi":{
+         target:'https://u.y.qq.com',
+         changeOrigin:true, //允许改变请求源
+         pathRewrite:{
+           "^/xixi":''  //路径重新
+         }
        }
     }
   },
