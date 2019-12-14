@@ -67,3 +67,15 @@ export const getSongPurl=(list)=>{
    })
   })
 }
+
+// 根据歌曲mid 获取歌词信息
+
+export const getLyricByMid=(mid='002J4UUk29y8BY')=>{
+  return new Promise((resolve,reject)=>{
+    let url =`/hy/music/api/lyric?g_tk=1928093487&inCharset=utf-8&outCharset=utf-8&notice=0&format=json&songmid=${mid}&platform=yqq&hostUin=0&needNewCode=0&categoryId=10000000&pcachetime=1576287332923`
+    axios.get(url)
+    .then((data)=>{
+      resolve(data)
+    })
+  })
+}

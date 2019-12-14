@@ -6,6 +6,13 @@ function resolve(dir){
 module.exports={
   devServer:{
     proxy:{
+       'hy':{
+          target:'http://ustbhuangyi.com',
+          changeOrigin:true, //允许改变请求源
+          pathRewrite:{
+            "^/hy":''  //路径重新
+          }
+       },
        '/hehe':{
          target:'http://ustbhuangyi.com', // 请求的目标路径
          changeOrigin:true, //允许改变请求源

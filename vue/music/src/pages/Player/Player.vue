@@ -20,8 +20,11 @@
           @ended='onended'
           @canplay="oncanplay"
           @timeupdate='timeUpdate'
-         controls></audio>
+         ></audio>
        <!-- {{currentSong}} -->
+       <br>
+       <br>
+       <br>
        <!--进度条条 -->
        <my-progress 
         :startTime='currentTime' 
@@ -30,6 +33,7 @@
         >
        </my-progress>
        <!-- 歌词 -->
+       {{lyricTxt}}
        <!-- 控制栏 -->
        <button @click='playMusic'>{{this.isPlay?"stop":"play"}}</button>
        <button @click='next'>next</button>
@@ -50,15 +54,18 @@
 <script>
 
 import {mapState,mapMutations, mapGetters} from 'vuex'
-import {getSongPurl} from 'api/singer.js'
+import {getSongPurl,getLyricByMid} from 'api/singer.js'
 import myProgress from  'components/my-progress'
+import {Base64} from 'js-base64'
+import LyricParser from 'lyric-parser' 
 export default {
   components:{myProgress},
   data(){
     return {
       isPlay:false,
       mode:this.loop||0,
-      currentTime:0
+      currentTime:0,
+      lyricTxt:'暂无数据'
     }
   },
 
@@ -81,6 +88,7 @@ export default {
       }else{
         this.audio.pause()
       }
+      this.lyricObj.togglePlay()
      
     },
     next(){
@@ -95,10 +103,20 @@ export default {
     oncanplay(){
       console.log('歌曲下载完毕可以播放')
       this.audio.play()
+      // 歌词播放 
+      // 避免歌曲能播放的时候歌词还没获取到
+      if(!this.lyricObj ) return false 
+      // this.lyricObj.togglePlay()
     },
-    changeMusicTime(time){
-      // 修改播放时间
+    changeMusicTime(time,state){
+      // state 为真歌词  音乐都改变
+      // state 为假只改变歌词
+      if(state){
+        // 修改播放时间
       this.audio.currentTime=time
+      }
+      // 修改歌词的时间
+      this.lyricObj.seek(time*1000)
     },
     timeUpdate(e){
       // console.log('播放时间改变',e.target.currentTime)
@@ -126,9 +144,11 @@ export default {
     onplaying(){
       console.log('正在播放')
       this.isPlay=true
+
     },
     onpause(){
       this.isPlay=false
+
     }
   },
   watch:{
@@ -146,12 +166,31 @@ export default {
         }
         console.log(this.audio)
       })
+      // 先将之前的歌词停止
+      if(this.lyricObj){
+        this.lyricObj.stop()
+        this.lyricObj=null
+      }
+      let mid=newSong.songmid 
+      getLyricByMid(mid)
+      .then((res)=>{
+        let string=Base64.decode(res.lyric)
+        console.log('歌词',string)
+        // 将歌词转化为lyric 解析对象
+        this.lyricObj=new LyricParser(string,(line)=>{
+          console.log('歌词播放的时候触发line',line.txt)
+          this.lyricTxt=line.txt
+        })
+        this.lyricObj.play()
+        // console.log(this.lyricObj)
+      })
       
       
     }
   },
   created(){
-   
+    // 在组建创建的时候已经执行
+
   }
 }
 /*
